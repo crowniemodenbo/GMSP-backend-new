@@ -1,0 +1,16 @@
+# Ignore environment variables
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django migrations (optional, but usually included)
+*/migrations/*.pyc
+*/migrations/*.py
+
+# Virtual environment (if you have one)
+venv/
+env/
