@@ -166,6 +166,6 @@ REST_FRAMEWORK = {
     )
 }
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'http://196.13.252.30']
 
 CORS_ALLOW_ALL_ORIGINS = True  # Allows all domains to access (useful for dev)
