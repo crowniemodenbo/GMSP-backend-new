@@ -109,6 +109,7 @@ DEFAULT_FROM_EMAIL = f"GSMP <{config('EMAIL_HOST_USER')}>"
 
 
 
+AUTH_USER_MODEL = 'users.User'
 
 
 # Password validation
@@ -129,7 +130,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'users.User'
 
 
 
