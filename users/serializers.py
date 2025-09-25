@@ -141,7 +141,7 @@ class UserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = User
-        fields = ['id', 'email', 'first_name', 'last_name', 'role', 'mentor_intro_video']
+        fields = ['id', 'email', 'title','first_name', 'last_name', 'job_title', 'institutional_affiliation', 'nationality', 'city', 'role','bio','phone' ,'mentor_intro_video']
     
     def get_mentor_intro_video(self, obj):
         if obj.mentor_intro_video and hasattr(obj.mentor_intro_video, 'url'):
