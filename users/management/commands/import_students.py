@@ -33,12 +33,14 @@ class Command(BaseCommand):
                     user = User.objects.create_user(
                         email=email,
                         password=temp_password,
-                        full_name=row['full_name'],
+                        first_name=row['first_name'],
+                        last_name=row['last_name'],
                         id_number=row.get('id_number'),
                         phone=row.get('phone'),
                         dob=row.get('dob'),
                         nationality=row.get('nationality'),
                         city=row.get('city'),
+                        institutional_affiliation=row.get('institutional_affiliation'),
                         role='student',
                         is_first_login=True,       
                         password_expiry=None    
