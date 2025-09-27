@@ -107,6 +107,15 @@ class LoginView(generics.GenericAPIView):
                     'email': user.email,
                     'full_name': user.first_name + user.last_name ,
                     'role': user.role,
+                    'first_name':user.first_name,
+                    'last_name':user.last_name, 
+                    'title':user.title, 
+                    'phone':user.phone,
+                    'bio':user.bio,
+                    'job_title':user.job_title, 
+                    'institutional_affiliation':user.institutional_affiliation,
+                    'nationality':user.nationality,
+                    'city':user.city,
                 }
             }, status=status.HTTP_200_OK)
 
@@ -327,7 +336,9 @@ def get_firebase_token(request):
     # Optional custom claims (e.g., user role)
     additional_claims = {
         "full_name": user.first_name + user.last_name,
-        "email": user.email
+        "email": user.email,
+        "first_name":user.first_name,
+        "last_name":user.last_name
     }
 
     # Generate Firebase custom token
