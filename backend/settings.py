@@ -168,6 +168,6 @@ REST_FRAMEWORK = {
     )
 }
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '196.13.252.30']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '196.13.252.30','gmspignite.aims.edu.gh']
 
 CORS_ALLOW_ALL_ORIGINS = True  # Allows all domains to access (useful for dev)
