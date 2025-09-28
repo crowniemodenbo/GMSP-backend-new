@@ -2,6 +2,8 @@ from django.db import models
 from django.utils import timezone
 from users.models import User
 from moviepy import VideoFileClip
+from threading import Thread
+
 import os
 
 
@@ -49,15 +51,17 @@ class Video(models.Model):
         verbose_name_plural = 'Videos'
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # Save first to ensure file is available
+        """Save video and calculate duration in a background thread."""
+        super().save(*args, **kwargs)  # Save first
 
         if self.video_file and (self.duration == 0 or not self.duration):
-            try:
-                video_path = self.video_file.path
-                with VideoFileClip(video_path) as clip:
-                    self.duration = int(clip.duration)
-                # Save again only if duration was updated
-                super().save(update_fields=['duration'])
-            except Exception as e:
-                # Optionally log the error
-                pass
+            def update_duration(video_id, path):
+                try:
+                    with VideoFileClip(path) as clip:
+                        duration = int(clip.duration)
+                    Video.objects.filter(id=video_id).update(duration=duration)
+                except Exception as e:
+                    # Log error here if needed
+                    pass
+
+            Thread(target=update_duration, args=(self.id, self.video_file.path), daemon=True).start()
