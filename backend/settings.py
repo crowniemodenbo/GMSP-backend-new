@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -171,3 +172,10 @@ REST_FRAMEWORK = {
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '196.13.252.30','gmspignite.aims.edu.gh']
 
 CORS_ALLOW_ALL_ORIGINS = True  # Allows all domains to access (useful for dev)
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),  # or longer, as needed
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=60), # or longer, as needed
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+}
