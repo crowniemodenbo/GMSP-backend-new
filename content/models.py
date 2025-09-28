@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 from users.models import User
+from moviepy import VideoFileClip
+import os
 
 
 def video_upload_path(instance, filename):
@@ -45,3 +47,17 @@ class Video(models.Model):
         ordering = ['course', 'order_in_course', '-upload_date']
         verbose_name = 'Video'
         verbose_name_plural = 'Videos'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # Save first to ensure file is available
+
+        if self.video_file and (self.duration == 0 or not self.duration):
+            try:
+                video_path = self.video_file.path
+                with VideoFileClip(video_path) as clip:
+                    self.duration = int(clip.duration)
+                # Save again only if duration was updated
+                super().save(update_fields=['duration'])
+            except Exception as e:
+                # Optionally log the error
+                pass
