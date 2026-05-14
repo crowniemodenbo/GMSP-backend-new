@@ -9,6 +9,8 @@ from django.contrib.auth.hashers import check_password
 
 # --- Mentor Registration ---
 class MentorRegisterSerializer(serializers.ModelSerializer):
+    MAX_VIDEO_SIZE = 150 * 1024 * 1024  # 150MB
+
     mentor_intro_video = serializers.FileField(required=False)
     
     class Meta:
@@ -20,9 +22,14 @@ class MentorRegisterSerializer(serializers.ModelSerializer):
         video = data.get('mentor_intro_video')
         if video:
             # Check file size (limit to 50MB)
-            if video.size > 50 * 1024 * 1024:  # 50MB in bytes
-                raise serializers.ValidationError({"mentor_intro_video": "Video file too large. Maximum size is 50MB."})
+            # if video.size > 50 * 1024 * 1024:  # 50MB in bytes
+            #     raise serializers.ValidationError({"mentor_intro_video": "Video file too large. Maximum size is 50MB."})
                 
+
+            if video.size > self.MAX_VIDEO_SIZE:
+                raise serializers.ValidationError({
+                    "mentor_intro_video": "Video file too large. Maximum size is 150MB."
+                })
             # Check file type (optional)
             valid_types = ['video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/x-ms-wmv']
             if video.content_type not in valid_types:

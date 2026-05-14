@@ -9,7 +9,6 @@ cryptography==45.0.5
 Django==5.2
 django-cors-headers==4.7.0
 djangorestframework==3.16.0
-djangorestframework_simplejwt==5.5.0
 firebase_admin==7.0.0
 google-api-core==2.25.1
 google-auth==2.40.3
@@ -36,7 +35,6 @@ psycopg==3.2.6
 pyasn1==0.6.1
 pyasn1_modules==0.4.2
 pycparser==2.22
-PyJWT==2.10.1
 python-decouple==3.8
 requests==2.32.4
 rsa==4.9.1
