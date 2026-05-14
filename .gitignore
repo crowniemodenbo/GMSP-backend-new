@@ -11,7 +11,15 @@ __pycache__/
 */migrations/*.pyc
 */migrations/*.py
 
-# Virtual environment (if you have one)
+# Virtual environment
 venv/
 env/
+
+# macOS files
 .DS_Store
+
+# User uploads
+media/
+
+# Collected static files
+staticfiles/
